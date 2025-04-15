@@ -35,6 +35,10 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   private fun initFaceBook(call: MethodCall,result: MethodChannel.Result){
+    if(FacebookSdk.isInitialized()){
+      result.success(true)
+      return
+    }
     call.arguments?.let{
       runCatching {
         val map = it as Map<String, Any>
@@ -49,6 +53,7 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
         result.success(true)
       }.onFailure {
         Log.e("qwer","initFaceBook onFailure===>${it.message}")
+        result.success(false)
       }
     }
   }
@@ -64,6 +69,7 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
         result.success(true)
       }.onFailure {
         Log.e("qwer","logPurchase onFailure===>${it.message}")
+        result.success(false)
       }
     }
   }
