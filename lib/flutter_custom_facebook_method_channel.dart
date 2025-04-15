@@ -20,4 +20,10 @@ class MethodChannelFlutterCustomFacebook extends FlutterCustomFacebookPlatform {
     var result = await methodChannel.invokeMethod<bool>('logPurchase', {"amount":amount,"currency":currency,"parameters":parameters});
     return result??false;
   }
+
+  @override
+  Future<bool> logEventAdImpression(double amount, String currency) async{
+    final result = await methodChannel.invokeMethod<bool>('logEventAdImpression',{"amount":amount,"currency":currency});
+    return result??false;
+  }
 }

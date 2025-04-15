@@ -40,6 +40,12 @@ class _MyAppState extends State<MyApp> {
                 },
                 child: Text("logPurchase"),
               ),
+              TextButton(
+                onPressed: (){
+                  FlutterCustomFacebook.instance.logEventAdImpression(amount: 0.000033333, currency: "USD");
+                },
+                child: Text("logEventAdImpression"),
+              ),
             ],
           ),
         ),

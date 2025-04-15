@@ -19,4 +19,11 @@ class FlutterCustomFacebook {
   })async{
     return await FlutterCustomFacebookPlatform.instance.logPurchase(amount: amount, currency: currency,parameters: parameters);
   }
+
+  Future<bool> logEventAdImpression({
+    required double amount,
+    required String currency,
+  })async{
+    return await FlutterCustomFacebookPlatform.instance.logEventAdImpression(amount, currency);
+  }
 }
