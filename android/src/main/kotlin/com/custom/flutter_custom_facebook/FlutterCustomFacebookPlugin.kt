@@ -43,8 +43,12 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
         Log.e("qwer","kk===initFaceBook==${facebookId}==${facebookToken}")
         FacebookSdk.setApplicationId(facebookId)
         FacebookSdk.setClientToken(facebookToken)
+        FacebookSdk.setApplicationName("boom_test")
+        FacebookSdk.setIsDebugEnabled(true)
+        FacebookSdk.addLoggingBehavior(com.facebook.LoggingBehavior.REQUESTS)
         FacebookSdk.sdkInitialize(mContext)
         appEventsLogger = AppEventsLogger.newLogger(mContext)
+        Log.e("qwer","kk===${FacebookSdk.isInitialized()}")
         result.success(true)
       }.onFailure {
         Log.e("qwer","initFaceBook onFailure===>${it.message}")
@@ -58,11 +62,9 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
         val map = it as Map<String, Any>
         val amount = (map["amount"] as? Double)?.toBigDecimal()
         val currency = Currency.getInstance(map["currency"] as? String)
-        Log.e("qwer","kk===logPurchase==${amount}==${currency}")
-        val parameters = map["parameters"] as? Map<String, Any>
-        val parameterBundle = createBundleFromMap(parameters) ?: Bundle()
 
-        appEventsLogger?.logPurchase(amount, currency, parameterBundle)
+        appEventsLogger?.logPurchase(amount, currency)
+        Log.e("qwer","kk===logPurchase==${amount}==${currency}==${null==appEventsLogger}")
         result.success(true)
       }.onFailure {
         Log.e("qwer","logPurchase onFailure===>${it.message}")
@@ -77,36 +79,6 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
     parameters.putString(EVENT_PARAM_VALUE_TO_SUM,decimal.toPlainString())
     appEventsLogger?.logEvent(EVENT_NAME_AD_IMPRESSION, parameters)
     Log.e("qwer","kk===logEventAdImpression")
-  }
-
-  private fun createBundleFromMap(parameterMap: Map<String, Any>?): Bundle? {
-    if (parameterMap == null) {
-      return null
-    }
-
-    val bundle = Bundle()
-    for (jsonParam in parameterMap.entries) {
-      val value = jsonParam.value
-      val key = jsonParam.key
-      if (value is String) {
-        bundle.putString(key, value as String)
-      } else if (value is Int) {
-        bundle.putInt(key, value as Int)
-      } else if (value is Long) {
-        bundle.putLong(key, value as Long)
-      } else if (value is Double) {
-        bundle.putDouble(key, value as Double)
-      } else if (value is Boolean) {
-        bundle.putBoolean(key, value as Boolean)
-      } else if (value is Map<*, *>) {
-        val nestedBundle = createBundleFromMap(value as Map<String, Any>)
-        bundle.putBundle(key, nestedBundle as Bundle)
-      } else {
-        throw IllegalArgumentException(
-          "Unsupported value type: " + value.javaClass.kotlin)
-      }
-    }
-    return bundle
   }
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
