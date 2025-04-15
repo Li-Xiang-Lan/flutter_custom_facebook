@@ -34,7 +34,7 @@ abstract class FlutterCustomFacebookPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<bool> logEventAdImpression(double amount, String currency,){
-    throw UnimplementedError('platformVersion() has not been implemented.');
-  }
+  // Future<bool> logEventAdImpression(double amount, String currency,){
+  //   throw UnimplementedError('platformVersion() has not been implemented.');
+  // }
 }

@@ -40,15 +40,12 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
         val map = it as Map<String, Any>
         val facebookId = (map["facebookId"] as? String)?:""
         val facebookToken = (map["facebookToken"] as? String)?:""
-        Log.e("qwer","kk===initFaceBook==${facebookId}==${facebookToken}")
+        val facebookAppName = (map["facebookAppName"] as? String)?:""
         FacebookSdk.setApplicationId(facebookId)
         FacebookSdk.setClientToken(facebookToken)
-        FacebookSdk.setApplicationName("boom_test")
-        FacebookSdk.setIsDebugEnabled(true)
-        FacebookSdk.addLoggingBehavior(com.facebook.LoggingBehavior.REQUESTS)
+        FacebookSdk.setApplicationName(facebookAppName)
         FacebookSdk.sdkInitialize(mContext)
         appEventsLogger = AppEventsLogger.newLogger(mContext)
-        Log.e("qwer","kk===${FacebookSdk.isInitialized()}")
         result.success(true)
       }.onFailure {
         Log.e("qwer","initFaceBook onFailure===>${it.message}")
@@ -64,7 +61,6 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
         val currency = Currency.getInstance(map["currency"] as? String)
 
         appEventsLogger?.logPurchase(amount, currency)
-        Log.e("qwer","kk===logPurchase==${amount}==${currency}==${null==appEventsLogger}")
         result.success(true)
       }.onFailure {
         Log.e("qwer","logPurchase onFailure===>${it.message}")
@@ -78,7 +74,6 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
     val decimal = 0.001.toBigDecimal()
     parameters.putString(EVENT_PARAM_VALUE_TO_SUM,decimal.toPlainString())
     appEventsLogger?.logEvent(EVENT_NAME_AD_IMPRESSION, parameters)
-    Log.e("qwer","kk===logEventAdImpression")
   }
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
