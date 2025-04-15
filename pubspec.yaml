@@ -1,7 +1,7 @@
 name: flutter_custom_facebook
 description: "custom init facebook"
 version: 0.0.1
-homepage:
+homepage: https://github.com/Li-Xiang-Lan/flutter_custom_facebook
 
 environment:
   sdk: ^3.6.0
