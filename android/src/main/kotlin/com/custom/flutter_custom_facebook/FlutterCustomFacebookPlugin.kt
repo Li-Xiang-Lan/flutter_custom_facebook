@@ -30,7 +30,6 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
     when(call.method){
       "initFaceBook"->initFaceBook(call,result)
       "logPurchase"->logPurchase(call,result)
-      "isInitialized"->result.success(FacebookSdk.isInitialized())
       "logEventAdImpression"->logEventAdImpression()
     }
   }
@@ -51,7 +50,7 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
         FacebookSdk.setApplicationName(facebookAppName)
         FacebookSdk.sdkInitialize(mContext)
         appEventsLogger = AppEventsLogger.newLogger(mContext)
-        result.success(FacebookSdk.isInitialized())
+        result.success(true)
       }.onFailure {
         Log.e("qwer","initFaceBook onFailure===>${it.message}")
         result.success(false)

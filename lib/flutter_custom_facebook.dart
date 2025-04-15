@@ -16,14 +16,10 @@ class FlutterCustomFacebook {
   Future<bool> logPurchase({
     required double amount,
     required String currency
-  })async{
-    return await FlutterCustomFacebookPlatform.instance.logPurchase(amount: amount, currency: currency);
+  })async {
+    return await FlutterCustomFacebookPlatform.instance.logPurchase(
+        amount: amount, currency: currency);
   }
-
-  Future<bool> isInitialized() async {
-    return await FlutterCustomFacebookPlatform.instance.isInitialized();
-  }
-
 
 // Future<bool> logEventAdImpression({
   //   required double amount,

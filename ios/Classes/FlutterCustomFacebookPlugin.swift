@@ -40,9 +40,6 @@ public class FlutterCustomFacebookPlugin: NSObject, FlutterPlugin {
       Settings.shared.appID=arguments["facebookId"] as? String
       Settings.shared.clientToken=arguments["facebookToken"] as? String
       Settings.shared.displayName=arguments["facebookAppName"] as? String
-      Settings.shared.isCodelessDebugLogEnabled=true
-        Settings.shared.loggingBehaviors=[.networkRequests]
-
 
       var options = [UIApplication.LaunchOptionsKey: Any]()
       for (k, value) in self.launchOptions {
