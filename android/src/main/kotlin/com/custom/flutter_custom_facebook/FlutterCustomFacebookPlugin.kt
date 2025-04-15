@@ -35,10 +35,6 @@ class FlutterCustomFacebookPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   private fun initFaceBook(call: MethodCall,result: MethodChannel.Result){
-    if(FacebookSdk.isInitialized()){
-      result.success(true)
-      return
-    }
     call.arguments?.let{
       runCatching {
         val map = it as Map<String, Any>
