@@ -23,14 +23,13 @@ abstract class FlutterCustomFacebookPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<bool> initFaceBook(String facebookId,String facebookToken) {
+  Future<bool> initFaceBook(String facebookId,String facebookToken,String facebookAppName) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
   Future<bool> logPurchase({
     required double amount,
     required String currency,
-    Map<String, dynamic>? parameters,
   }) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }

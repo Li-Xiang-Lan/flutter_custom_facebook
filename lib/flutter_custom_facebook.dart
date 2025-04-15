@@ -8,16 +8,16 @@ class FlutterCustomFacebook {
   Future<bool> initFaceBook({
     required String facebookId,
     required String facebookToken,
+    required String facebookAppName,
   })async{
-    return FlutterCustomFacebookPlatform.instance.initFaceBook(facebookId, facebookToken);
+    return FlutterCustomFacebookPlatform.instance.initFaceBook(facebookId, facebookToken,facebookAppName);
   }
 
   Future<bool> logPurchase({
     required double amount,
-    required String currency,
-    Map<String, dynamic>? parameters,
+    required String currency
   })async{
-    return await FlutterCustomFacebookPlatform.instance.logPurchase(amount: amount, currency: currency,parameters: parameters);
+    return await FlutterCustomFacebookPlatform.instance.logPurchase(amount: amount, currency: currency);
   }
 
   Future<bool> logEventAdImpression({

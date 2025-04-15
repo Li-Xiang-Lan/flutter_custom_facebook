@@ -10,14 +10,14 @@ class MethodChannelFlutterCustomFacebook extends FlutterCustomFacebookPlatform {
   final methodChannel = const MethodChannel('flutter_custom_facebook');
 
   @override
-  Future<bool> initFaceBook(String facebookId,String facebookToken) async {
-    final result = await methodChannel.invokeMethod<bool>('initFaceBook',{"facebookId":facebookId,"facebookToken":facebookToken});
+  Future<bool> initFaceBook(String facebookId,String facebookToken,String facebookAppName) async {
+    final result = await methodChannel.invokeMethod<bool>('initFaceBook',{"facebookId":facebookId,"facebookToken":facebookToken,"facebookAppName":facebookAppName});
     return result??false;
   }
 
   @override
-  Future<bool> logPurchase({required double amount, required String currency, Map<String, dynamic>? parameters}) async{
-    var result = await methodChannel.invokeMethod<bool>('logPurchase', {"amount":amount,"currency":currency,"parameters":parameters});
+  Future<bool> logPurchase({required double amount, required String currency}) async{
+    var result = await methodChannel.invokeMethod<bool>('logPurchase', {"amount":amount,"currency":currency});
     return result??false;
   }
 

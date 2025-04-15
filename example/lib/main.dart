@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
             children: [
               TextButton(
                 onPressed: (){
-                  FlutterCustomFacebook.instance.initFaceBook(facebookId: "1337901080596464", facebookToken: "a5fdccfedd4bb9d734ce1fd86c64905e");
+                  FlutterCustomFacebook.instance.initFaceBook(facebookId: "1337901080596464", facebookToken: "a5fdccfedd4bb9d734ce1fd86c64905e",facebookAppName: "boom_test");
                 },
                 child: Text("init"),
               ),
